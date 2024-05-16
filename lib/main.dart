@@ -1,4 +1,4 @@
-import 'package:animation_app/scroll_list.dart';
+import 'package:animation_app/Screen/movie.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,14 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Animation',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomepagState(),
+      home: MovieDisplay(),
     );
   }
 }
