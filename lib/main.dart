@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:o3d/o3d.dart';
+
+import 'inverted_circle_clipper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,119 +10,352 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'UI 3D flutter',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  O3DController o3dController = O3DController();
+  PageController mainPageController = PageController();
+  PageController textsPageController = PageController();
+  int page = 0;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final height = MediaQuery.sizeOf(context).height;
+
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      backgroundColor: Colors.blue.shade50,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            O3D(
+              src: 'assets/disney_style_character.glb',
+              controller: o3dController,
+              ar: false,
+              autoPlay: true,
+              autoRotate: false,
+              cameraControls: false,
+              cameraTarget: CameraTarget(-.25, 1.5, 1.5),
+              cameraOrbit: CameraOrbit(0, 90, 1),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            PageView(
+              controller: mainPageController,
+              children: [
+                ListView.builder(
+                  padding: EdgeInsets.fromLTRB(12, height * 0.8, 12, 100),
+                  itemCount: 100,
+                  itemBuilder: (context, index) => Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            'assets/image1.jpg',
+                            fit: BoxFit.cover,
+                            width: 70,
+                            height: 70,
+                          ),
+                          const Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'A simple way to stay healthy',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Dr Babak',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Icon(
+                            Icons.location_on,
+                            color: Colors.red,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                ListView.builder(
+                  padding: EdgeInsets.fromLTRB(12, height * 0.8, 12, 100),
+                  itemCount: 100,
+                  itemBuilder: (context, index) => Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            'assets/image2.jpg',
+                            fit: BoxFit.cover,
+                            width: 70,
+                            height: 70,
+                          ),
+                          const Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '10:24',
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 12),
+                                  ),
+                                  Text(
+                                    'Morning walk',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    '2 km in 30min',
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Icon(
+                            Icons.directions_walk_rounded,
+                            color: Colors.red,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                ClipPath(
+                  clipper: InvertedCircleClipper(),
+                  child: Container(
+                    color: Colors.white,
+                  ),
+                )
+              ],
             ),
+            Container(
+              width: 100,
+              height: double.infinity,
+              margin: const EdgeInsets.all(12),
+              child: PageView(
+                controller: textsPageController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  Column(
+                    children: [
+                      const SizedBox(
+                        width: double.infinity,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text("Daily goals"),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            const Expanded(
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text("87"),
+                              ),
+                            ),
+                            Transform.translate(
+                                offset: const Offset(0, 20),
+                                child: const Text("%"))
+                          ],
+                        ),
+                      ),
+                      const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(Icons.local_fire_department_outlined,
+                                color: Colors.red),
+                          ),
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("1,840"),
+                              Text(
+                                "calories",
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ))
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            child:
+                                Icon(Icons.do_not_step, color: Colors.purple),
+                          ),
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("3,480"),
+                              Text(
+                                "steps",
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ))
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(Icons.hourglass_bottom,
+                                color: Colors.lightBlueAccent),
+                          ),
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("6.5"),
+                              Text(
+                                "hours",
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.grey),
+                              ),
+                            ],
+                          ))
+                        ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      const SizedBox(
+                        width: double.infinity,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text("Journal"),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Transform.translate(
+                                offset: const Offset(0, 20),
+                                child: const Text("<")),
+                            const Expanded(
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text("12"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Text(
+                        "July 2020",
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                  const Column(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text("Profile"),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text("Dis"),
+                        ),
+                      ),
+                      Text(
+                        "23 years old",
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: page,
+          onTap: (page) {
+            mainPageController.animateToPage(page,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease);
+            textsPageController.animateToPage(page,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease);
+
+            if (page == 0) {
+              o3dController.cameraTarget(-.25, 1.5, 1.5);
+              o3dController.cameraOrbit(0, 90, 1);
+            } else if (page == 1) {
+              o3dController.cameraTarget(0, 1.8, 0);
+              o3dController.cameraOrbit(-90, 90, 1.5);
+            } else if (page == 2) {
+              o3dController.cameraTarget(0, 3, 0);
+              o3dController.cameraOrbit(0, 90, -3);
+            }
+
+            setState(() {
+              this.page = page;
+            });
+          },
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.analytics_outlined), label: 'home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.timer_outlined), label: 'home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline), label: 'home'),
+          ]),
     );
   }
 }
