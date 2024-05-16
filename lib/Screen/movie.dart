@@ -141,7 +141,6 @@ class _MovieDisplayState extends State<MovieDisplay> {
                                     AnimatedOpacity(
                                       duration:
                                           const Duration(milliseconds: 1000),
-                                      // text is shown 1000 milliseconds later after scroll
                                       opacity:
                                           current == movieItems.indexOf(movie)
                                               ? 1.0
@@ -175,7 +174,7 @@ class _MovieDisplayState extends State<MovieDisplay> {
                                             Row(
                                               children: [
                                                 const Icon(
-                                                  Icons.access_time,
+                                                  Icons.access_time_filled,
                                                   color: Colors.black45,
                                                   size: 20,
                                                 ),
@@ -199,7 +198,7 @@ class _MovieDisplayState extends State<MovieDisplay> {
                                               child: const Row(
                                                 children: [
                                                   Icon(
-                                                    Icons.play_circle,
+                                                    Icons.play_circle_fill,
                                                     color: Colors.black,
                                                     size: 20,
                                                   ),

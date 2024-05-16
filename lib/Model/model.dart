@@ -20,13 +20,29 @@ class Movie {
 
 final List<Movie> movieItems = [
   Movie(
+      title: 'Oppenheimer',
+      image:
+          'https://theempiretheatre.com/uploads/2023/09/Empire-Movie-site-Oppenheimer.jpg',
+      director: 'Direct by Christopher Nolan',
+      rating: '5.0',
+      duration: "3h",
+      price: "1200"),
+  Movie(
+      title: 'Avengers: Endgame',
+      image:
+          'https://static.wikia.nocookie.net/avengers-infinity-war-parte-1-y-2/images/1/19/PosterOficcial2.jpg/revision/latest?cb=20190405035826&path-prefix=es',
+      director: 'Direct by Anthony Russo and Joe Russo',
+      rating: '5.0',
+      duration: "3h",
+      price: "1200"),
+  Movie(
       title: 'Joker',
       image:
           'https://www.tallengestore.com/cdn/shop/products/Joker_-_Put_On_A_Happy_Face_-_Joaquin_Phoenix_-_Hollywood_English_Movie_Poster_3_de5e4cfc-cfd4-4732-aad1-271d6bdb1587.jpg?v=1579504979',
       director: 'Direct by Todd Phillips',
       rating: '5.0',
       duration: "2h:42m",
-      price: "250"),
+      price: "1200"),
   Movie(
       title: 'Pathan',
       image:
@@ -34,7 +50,7 @@ final List<Movie> movieItems = [
       director: ' Direct by Siddharth Anand',
       rating: '5.0',
       duration: "2h:10m",
-      price: "200"),
+      price: "1200"),
   Movie(
       title: 'Big',
       image:
@@ -42,15 +58,7 @@ final List<Movie> movieItems = [
       director: 'Direct by Penny Marshall',
       rating: '4.6',
       duration: "1h:45m",
-      price: "100"),
-  Movie(
-      title: 'Joker',
-      image:
-          'https://www.tallengestore.com/cdn/shop/products/Joker_-_Put_On_A_Happy_Face_-_Joaquin_Phoenix_-_Hollywood_English_Movie_Poster_3_de5e4cfc-cfd4-4732-aad1-271d6bdb1587.jpg?v=1579504979',
-      director: 'Direct byTodd Phillips',
-      rating: '5.0',
-      duration: "2h:42m",
-      price: "50"),
+      price: "1200"),
   Movie(
       title: 'KEVIN & PERRY',
       image:
@@ -62,11 +70,11 @@ final List<Movie> movieItems = [
 ];
 List<String> time = ['8am', '11am', '1pm', '3pm', '6pm', '8pm'];
 List<Color> colors = [
-  Colors.green,
-  Colors.black,
-  Colors.purple,
-  Colors.amber,
-  Colors.blueGrey,
-  Colors.deepPurple,
-  Colors.yellow,
+  Color.fromARGB(255, 3, 29, 84),
+  Color.fromARGB(255, 140, 165, 215),
+  Color.fromARGB(255, 39, 137, 176),
+  Color.fromARGB(255, 112, 160, 216),
+  const Color.fromARGB(255, 39, 122, 163),
+  Color.fromARGB(255, 66, 84, 165),
+  Color.fromARGB(255, 24, 91, 133),
 ];
