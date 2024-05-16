@@ -1,3 +1,5 @@
+import 'package:animation_app/Model/model.dart';
+import 'package:animation_app/Screen/detail_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
