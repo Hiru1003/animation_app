@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animation_app/Model/model.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class DetailScreen extends StatefulWidget {
   final Movie movie;
@@ -23,6 +24,15 @@ class _DetailScreenState extends State<DetailScreen> {
             backgroundColor: Colors.white,
             expandedHeight: size.height * 0.61,
             floating: true,
+            leading: IconButton(
+              icon: const Icon(
+                LineIcons.alternateLongArrowLeft,
+                color: Color.fromARGB(255, 247, 246, 246),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: const [
                 StretchMode.zoomBackground,
@@ -194,7 +204,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         Center(
                           child: Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 140, vertical: 15),
+                                horizontal: 100, vertical: 15),
                             decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(30),
