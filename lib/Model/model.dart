@@ -20,6 +20,14 @@ class Movie {
 
 final List<Movie> movieItems = [
   Movie(
+      title: 'Inception',
+      image:
+          'https://m.media-amazon.com/images/M/MV5BMTM0MjUzNjkwMl5BMl5BanBnXkFtZTcwNjY0OTk1Mw@@._V1_.jpg',
+      director: ' Direct by Christopher Nolan',
+      rating: '5.0',
+      duration: "2h:28m",
+      price: "1200"),
+  Movie(
       title: 'Oppenheimer',
       image:
           'https://theempiretheatre.com/uploads/2023/09/Empire-Movie-site-Oppenheimer.jpg',
@@ -60,12 +68,12 @@ final List<Movie> movieItems = [
       duration: "1h:45m",
       price: "1200"),
   Movie(
-      title: 'KEVIN & PERRY',
+      title: 'Mean Girls',
       image:
-          'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p25555_p_v10_aa.jpg',
-      director: 'Direct by Ed Bye',
+          'https://assets-prd.ignimgs.com/2023/12/13/mean-girls-ver12-xlg-button-1702510491141.jpg',
+      director: 'Direct by Mark Waters',
       rating: '4.0',
-      duration: "1h:22m",
+      duration: "1h:37m",
       price: "150"),
 ];
 List<String> time = ['8am', '11am', '1pm', '3pm', '6pm', '8pm'];
