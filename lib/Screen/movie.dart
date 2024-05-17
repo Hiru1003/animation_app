@@ -1,8 +1,8 @@
 import 'package:animation_app/Model/model.dart';
 import 'package:animation_app/Screen/detail_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class MovieDisplay extends StatefulWidget {
   const MovieDisplay({super.key});
@@ -22,7 +22,6 @@ class _MovieDisplayState extends State<MovieDisplay> {
         height: size.height,
         child: Stack(
           children: [
-            // For background image
             Image.network(
               movieItems[current].image,
               fit: BoxFit.cover,
@@ -155,7 +154,7 @@ class _MovieDisplayState extends State<MovieDisplay> {
                                             Row(
                                               children: [
                                                 const Icon(
-                                                  Icons.star,
+                                                  LineIcons.starAlt,
                                                   color: Colors.amber,
                                                   size: 20,
                                                 ),
@@ -174,8 +173,8 @@ class _MovieDisplayState extends State<MovieDisplay> {
                                             Row(
                                               children: [
                                                 const Icon(
-                                                  Icons.access_time_filled,
-                                                  color: Colors.black45,
+                                                  LineIcons.clock,
+                                                  color: Colors.black,
                                                   size: 20,
                                                 ),
                                                 const SizedBox(
@@ -198,7 +197,7 @@ class _MovieDisplayState extends State<MovieDisplay> {
                                               child: const Row(
                                                 children: [
                                                   Icon(
-                                                    Icons.play_circle_fill,
+                                                    LineIcons.play,
                                                     color: Colors.black,
                                                     size: 20,
                                                   ),
