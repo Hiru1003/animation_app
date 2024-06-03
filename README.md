@@ -4,9 +4,9 @@
 Leveraged the power of Flutter to ensure a smooth and responsive user interface across both iOS and Android platforms.<br/>
 ## Carousel Animation:  <br/>
 Implemented carousel animations to enhance the visual appeal and provide an engaging way to navigate through movies.<br/>
-## User-Friendly Interface:<br/>
+## User-Friendly Interface: <br/>
 Designed a clean and intuitive UI for effortless browsing and movie selection.<br/>
-## Optimized Performance: <br/>
+## Optimized Performance:  <br/>
 Ensured optimal app performance with efficient state management and animation handling.<br/><br/>
 
 
